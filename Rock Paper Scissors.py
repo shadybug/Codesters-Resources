@@ -1,3 +1,5 @@
+winner = codesters.Text("Hello up here.", 0, 200, "red")
+
 if choice == computer_choice:
     winner.set_text("Tie!")
 elif choice == "rock":
