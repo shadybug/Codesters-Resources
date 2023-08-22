@@ -14,3 +14,13 @@ def update_text():
     d.set_text("D: " + answers[question_number][3])
 update_text()
 
+# Put this code in the next_question() function:
+    global question_number
+    question_number = question_number + 1
+    
+    # Tell the player their score
+    sprite.say(score)
+    
+    stage.wait(3)
+    
+    update_text()
