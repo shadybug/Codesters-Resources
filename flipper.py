@@ -1,47 +1,25 @@
-# Variables
-sea_level = 40
-
-# Rectangles for sky, sea, and sand
-sky = codesters.Rectangle(0, 200, 500, 100, "lightblue")
-sea = codesters.Rectangle(0, 0, 500, 300, "cadetblue")
-sand = codesters.Rectangle(0, -200, 500, 100, "burlywood")
-
-# Set the sea level
-sea.set_top(sea_level)
-
-# Shark sprite
-shark = codesters.Sprite("shark")
-shark.set_size(0.4)
-
-# Key controls
-def left_key():
-    shark.set_rotation(shark.get_rotation() + 10)
-    
-stage.event_key("left", left_key)
-
-def right_key():
-    shark.set_rotation(shark.get_rotation() - 10)
-    
-stage.event_key("right", right_key)
-
+# Up key code
 def up_key():
-    global sea_level
-    sea_level += 5
+    global shark_y_speed
+    if sea_level > 0:
+        shark_y_speed += math.sin(shark.get_rotation() * math.pi / 180) * shark_swim_power
 stage.event_key("up", up_key)
 
-def down_key():
-    global sea_level
-    sea_level -= 5
-stage.event_key("down", down_key)
-
 # Main game loop
-
 def game():
-    global sea_level
+    global sea_level, shark_y_speed
     while True:
+        sea_level -= shark_y_speed
         sea.set_top(sea_level)
+        sand.set_top(sea_level - water_depth)
+        
+        if sea_level > water_depth:
+            shark_y_speed = 5
+        elif sea_level > 0:
+            shark_y_speed *= 0.95
+        else:
+            shark_y_speed -= 0.6
+        
+        
         stage.wait(0.01)
 game()
-
-
-
