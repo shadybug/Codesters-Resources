@@ -1,36 +1,38 @@
-stage.set_background_color("green")
 stage.disable_all_walls()
-road = codesters.Rectangle(0,0,400,500,"gray")
 
-player = codesters.Sprite("car1",0,-200)
-player.set_size(.5)
+grass = codesters.Square(0, 0, 500, "green")
+road = codesters.Rectangle(0, 0, 350, 500, "grey")
 
-score_text = codesters.Text("Score: 0", -200, 220)
-speed_text = codesters.Text("Speed: 0", -200, 190)
+car = codesters.Sprite("car1", 0, -200)
+car.set_size(0.5)
 
-obstacles = []
-trees = []
-
-speed = -5
-score = 0
 game_over = False
 
-def left_key(player):
-    player.move_left(20)
-player.event_key("left", left_key)
-player.event_key("a", left_key)
+# optional extra code, after you've finished other code:
+x_velocity = 0
 
-def right_key(player):
-    player.move_right(20)
-player.event_key("right", right_key)
-player.event_key("d", right_key)
+def left_key(sprite):
+    sprite.move_left(20)
+    # add other actions...
+    
+car.event_key("left", left_key)
+
+def right_key(sprite):
+    sprite.move_right(20)
+    # add other actions...
+    
+car.event_key("right", right_key)
 
 def create_obstacle():
-    obstacle = codesters.Sprite("pollution", random.randint(-180,180), 350)
-    obstacle.set_y_speed(speed)
+    asteroid = codesters.Sprite("asteroid",0,300)
+    asteroid.set_size(0.5)
+    asteroid.set_y_speed(-5)
 
 def main():
     while not game_over:
         create_obstacle()
-        stage.wait(.3)
+        stage.wait(1)
 main()
+
+
+
