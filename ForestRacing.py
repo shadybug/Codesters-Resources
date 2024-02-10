@@ -23,8 +23,15 @@ def right_key(sprite):
     
 car.event_key("right", right_key)
 
+def collision(car, hit_sprite):
+    my_var = hit_sprite.get_image_name() 
+    if my_var == "asteroid":
+        car.say("I hit something!")
+car.event_collision(collision)
+
 def create_obstacle():
-    asteroid = codesters.Sprite("asteroid",0,300)
+    x = random.randint(-150,150)
+    asteroid = codesters.Sprite("asteroid",x,300)
     asteroid.set_size(0.5)
     asteroid.set_y_speed(-5)
 
@@ -33,6 +40,3 @@ def main():
         create_obstacle()
         stage.wait(1)
 main()
-
-
-
