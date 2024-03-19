@@ -1,7 +1,7 @@
 # Stage and variable setup
 stage.set_background("matrix")
 
-score = 0
+bricks_broken = 0
 lives = 3
 
 columns = 7
@@ -11,7 +11,10 @@ rows = 4
 ball = codesters.Sprite("slimeball", 0, -100)
 ball.set_size(0.5)
 
-paddle = codesters.Rectangle(0, -200, 100, 10, "black")
+paddle = codesters.Rectangle(0, -200, 100, 10, "cyan")
+
+# Score display
+score_text = codesters.Text("Score = {}".format(bricks_broken), 0, 225, "darkblue")
 
 # Arrow key movement
 def left_key():
@@ -29,7 +32,17 @@ def click():
     ball.set_y_speed((y + 100)/30)
     ball.set_x_speed(x/30)
     
+
+# Collision with bricks and paddle
 stage.event_click(click)
+def collision(sprite, hit_sprite):
+    hit_color = hit_sprite.get_color() 
+    if hit_color == "black":
+        sprite.say("Ouch!")
+        
+    if hit_color == "cyan":
+        ball.set_y_speed(ball.get_y_speed())
+ball.event_collision(collision)
 
 # Generate bricks
 for row in range(rows):
