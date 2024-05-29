@@ -3,9 +3,9 @@ stage.set_background_color("lightblue")
 question_text = codesters.Text(" ", 0, 215)
 
 #create a list to hold all my questions
-questions = ["Question 1: Which of these bugs does NOT camouflage among flowers?", "Question 2", "Question 3"]
-answers = [["A: Orchid Mantis", "B: Crab Spider", "C: Flower Bee", "D: All of these do"], ["A: "], ["A: "]] #dictionary OR list, key is the index of the question, value are the options for the question
-answer_key = ["C", "A", "etc"] #store the correct answers
+questions = ["Question 1: what animal plays with a tennis ball?", "Question 2", "Question 3"]
+answers = [["A: puppy", "B: fish", "C: cat", "D: snake"], ["A: "], ["A: "]] #dictionary OR list, key is the index of the question, value are the options for the question
+answer_key = ["A", "B", "etc"] #store the correct answers
 
 x = 125
 y = 100
