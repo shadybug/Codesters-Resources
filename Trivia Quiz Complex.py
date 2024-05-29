@@ -1,41 +1,52 @@
-# Put this code directly after setting the sprite and stage
-# Text labels
-question = codesters.Text("test question", 0, 180, "white")
-a = codesters.Text("A:", -150, 50, "white")
-b = codesters.Text("B:", 150, 50, "white")
-c = codesters.Text("C:", -150, -50, "white")
-d = codesters.Text("D:", 150, -50, "white")
+stage.set_background_color("lightblue")
 
-choices = [a,b,c,d]
+question_text = codesters.Text(" ", 0, 215)
 
-# choices on the screen
-questions = []
-answers = []
-correct_answers = []
+#create a list to hold all my questions
+questions = ["Question 1: Which of these bugs does NOT camouflage among flowers?", "Question 2", "Question 3"]
+answers = [["A: Orchid Mantis", "B: Crab Spider", "C: Flower Bee", "D: All of these do"], ["A: "], ["A: "]] #dictionary OR list, key is the index of the question, value are the options for the question
+answer_key = ["C", "A", "etc"] #store the correct answers
 
-========SEPARATION OF SECTIONS: DO NOT COPY=========
+x = 125
+y = 100
 
-# Replace your for loop, and all other code after it, with this. Don't delete the create_questions() function!
-for counter in range (3):
-    question.set_text(questions[counter])
+option_A = codesters.Text(" ", -x, y)
+option_B = codesters.Text(" ", x, y)
+option_C = codesters.Text(" ", -x, -y)
+option_D = codesters.Text(" ", x, -y)
+
+answers_text = [option_A, option_B, option_C, option_D] 
+
+
+def ask_questions():
+    global question_text, questions
     
-    a.set_text("A: " + answers[counter][0])
-    b.set_text("B: " + answers[counter][1])
-    c.set_text("C: " + answers[counter][2])
-    d.set_text("D: " + answers[counter][3])
+    #get a question to ask from the list of questions
+    for i in range(len(questions)):
+        question = questions[i]
     
-    choice = sprite.ask(questions[counter])
+        #change the text of the questions-text sprite to update the display
+        question_text.set_text(question)
+        #then update answers
+        update_answers(i)
+        debug = input() #to stop after the first question is displayed
     
-    # Check if the question was correct, and increase the score
-    if choice == correct_answers[counter]:
-        sprite.say("Correct!")
-        score = score + 1
-    # Otherwise, tell the player they got it wrong
-    else:
-        sprite.say("Incorrect! The correct answer was C.")
     
-    # Wait a bit, so the player can see the message
-    stage.wait(2)
-
-# Tell the player their score
-sprite.say(score)
+def update_answers(index):
+    global answers, answers_text
+    #get the answer options from the answers list
+    options = answers[index]
+    
+    for i in range(4):
+        answers_text[i].set_text(options[i])
+    
+#other functions we could use:
+def check_answer(choice): #take in the player's choice
+    #compare the player's choice to the answer key
+    pass
+    
+    
+def main():
+    ask_questions()
+    
+main()
