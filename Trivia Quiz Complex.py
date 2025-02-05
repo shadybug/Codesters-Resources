@@ -1,52 +1,15 @@
-stage.set_background_color("lightblue")
+score = 0
 
-question_text = codesters.Text(" ", 0, 215)
+questions = ["Which of these is NOT a flower mimic?", "How many true legs does a caterpillar have?"]
+print(questions[1])
 
-#create a list to hold all my questions
-questions = ["Question 1: what animal plays with a tennis ball?", "Question 2", "Question 3"]
-answers = [["A: puppy", "B: fish", "C: cat", "D: snake"], ["A: "], ["A: "]] #dictionary OR list, key is the index of the question, value are the options for the question
-answer_key = ["A", "B", "etc"] #store the correct answers
+q1_answers = ["Crab spider", "Orchid mantis", "Flower bee", "All of these are flower mimics"]
+q2_answers = ["10", "6", "100", "16"]
 
-x = 125
-y = 100
+# Question 1
+question = codesters.Text(questions[0], 0, 150, "black")
 
-option_A = codesters.Text(" ", -x, y)
-option_B = codesters.Text(" ", x, y)
-option_C = codesters.Text(" ", -x, -y)
-option_D = codesters.Text(" ", x, -y)
-
-answers_text = [option_A, option_B, option_C, option_D] 
-
-
-def ask_questions():
-    global question_text, questions
-    
-    #get a question to ask from the list of questions
-    for i in range(len(questions)):
-        question = questions[i]
-    
-        #change the text of the questions-text sprite to update the display
-        question_text.set_text(question)
-        #then update answers
-        update_answers(i)
-        debug = input() #to stop after the first question is displayed
-    
-    
-def update_answers(index):
-    global answers, answers_text
-    #get the answer options from the answers list
-    options = answers[index]
-    
-    for i in range(4):
-        answers_text[i].set_text(options[i])
-    
-#other functions we could use:
-def check_answer(choice): #take in the player's choice
-    #compare the player's choice to the answer key
-    pass
-    
-    
-def main():
-    ask_questions()
-    
-main()
+a = codesters.Text(q1_answers[0], 0, 100, "black")
+b = codesters.Text(q1_answers[1], 0, 50, "black")
+c = codesters.Text(q1_answers[2], 0, 0, "black")
+d = codesters.Text(q1_answers[3], 0, -50, "black")
